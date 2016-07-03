@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.bdqn.devcom.MainActivity">
+
+    <FrameLayout
+        android:id="@+id/tabContent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/color_d7d7d7"></View>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <com.bdqn.devcom.widget.MyTabHost
+        android:id="@android:id/tabhost"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp">
+
+        <FrameLayout
+            android:id="@android:id/tabcontent"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"></FrameLayout>
+
+
+    </com.bdqn.devcom.widget.MyTabHost>
+    <!-- 快速操作按钮 -->
+    <ImageView
+        android:id="@+id/quick_option_iv"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="4dp"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="4dp"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_nav_add_selector" />
+    </RelativeLayout>
+
+</LinearLayout>
