@@ -58,6 +58,5 @@ public class MainActivity extends BaseActivity implements TabHost.OnTabChangeLis
     @Override
     public void onTabChanged(String tabId) {
 
-
     }
 }

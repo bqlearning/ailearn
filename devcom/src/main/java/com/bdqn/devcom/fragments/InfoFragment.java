@@ -1,5 +1,6 @@
 package com.bdqn.devcom.fragments;
 
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,13 +9,24 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.ListView;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.bdqn.devcom.InitActivity;
 import com.bdqn.devcom.R;
+import com.bdqn.devcom.base.App;
+import com.bdqn.devcom.utils.UrlUtil;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 /**
- * Created by heshuhui on 2016/7/2.
+ * 资讯页面
  */
 public class InfoFragment extends android.support.v4.app.Fragment{
      private View view;
@@ -37,8 +49,33 @@ public class InfoFragment extends android.support.v4.app.Fragment{
         srlayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                Log.e("---","----");
+                SharedPreferences sp = App.getPreferences("user_token");
+                String token = sp.getString(InitActivity.ACCRSS_TOKEN,null);
+                String newsUrl = UrlUtil.getNewsList(token,1);
+                Log.e("newurl",newsUrl);
+                requestData(newsUrl);
             }
         });
     }
+
+    private void requestData(String url) {
+
+        srlayout.setRefreshing(true);
+
+        StringRequest res = new StringRequest(url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.e("ssss",response);
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+               Log.e("===","请求出错");
+            }
+        });
+        srlayout.setRefreshing(false);
+        App.queue.add(res);
+    }
+
 }

@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import android.widget.RelativeLayout;
+import android.widget.FrameLayout;
 
 public class WelcomeActivity extends AppCompatActivity {
 
@@ -14,7 +14,7 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-        RelativeLayout startView = (RelativeLayout) findViewById(R.id.startView);
+        FrameLayout startView = (FrameLayout) findViewById(R.id.startView);
 
         AlphaAnimation alphaAnimation = new AlphaAnimation(0.5f,1.0f);
         alphaAnimation.setDuration(800);
@@ -26,17 +26,18 @@ public class WelcomeActivity extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                redirectTo();
+              redirectTo();
             }
 
             @Override
             public void onAnimationRepeat(Animation animation) {
             }
         });
+
     }
 
     private void redirectTo() {
-        Intent intent = new Intent(this,MainActivity.class);
+        Intent intent = new Intent(this,InitActivity.class);
         startActivity(intent);
         finish();
     }

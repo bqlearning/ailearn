@@ -5,16 +5,23 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
+
 
 public class App extends Application {
 
     public static Context mContext;
+    public static RequestQueue queue;
 
     @Override
     public void onCreate() {
         super.onCreate();
         if (mContext == null) {
             mContext = getApplicationContext();
+        }
+        if(queue == null){
+            queue = Volley.newRequestQueue(mContext);
         }
     }
 
